@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Docker常见问题</title>
+      <link href="/diary/2021/12/08/Docker%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"/>
+      <url>/diary/2021/12/08/Docker%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<p>1 . docker –privileged=true 参数作用</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 常见问题 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hello World</title>
       <link href="/diary/2021/12/08/hello-world/"/>
       <url>/diary/2021/12/08/hello-world/</url>
