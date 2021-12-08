@@ -6,8 +6,8 @@
   <title>在Centos环境安装Jenkins | 三喵Notes</title>
   <meta name="author" content="三喵">
   
-  <meta name="description" content="按以下步骤进行操作，操作环境Centos8.4，启动后，默认的端口号为8080，使用http://IP:8080即可访问进行初始化设置。
-1234567891011121314151617181920sudo yum install java-1.8.0-openjdksudo wget -O /e">
+  <meta name="description" content="按以下步骤进行操作，操作环境Centos8.4，启动后，默认的端口号为8080，使用http://IP:8080 即可访问进行初始化设置。
+1234567891011121314151617181920sudo yum install java-1.8.0-openjdksudo wget -O /">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -59,7 +59,7 @@
 	  
 
 	  <!-- content -->
-	  <p>按以下步骤进行操作，操作环境Centos8.4，启动后，默认的端口号为8080，使用<a href="http://IP:8080即可访问进行初始化设置。">http://IP:8080即可访问进行初始化设置。</a></p>
+	  <p>按以下步骤进行操作，操作环境Centos8.4，启动后，默认的端口号为8080，使用<a target="_blank" rel="noopener" href="http://ip:8080/">http://IP:8080</a> 即可访问进行初始化设置。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install java-1.8.0-openjdk</span><br><span class="line"></span><br><span class="line">sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo</span><br><span class="line"></span><br><span class="line">sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key</span><br><span class="line"></span><br><span class="line">sudo dnf install jenkins</span><br><span class="line"></span><br><span class="line">sudo systemctl start jenkins</span><br><span class="line"></span><br><span class="line">sudo systemctl enable jenkins</span><br><span class="line"></span><br><span class="line">systemctl status jenkins</span><br><span class="line"></span><br><span class="line">配置文件地址</span><br><span class="line">/etc/sysconfig/jenkins</span><br><span class="line"></span><br><span class="line">安装家目录</span><br><span class="line">JENKINS_HOME=/var/lib/jenkins</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 	  
