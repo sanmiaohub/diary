@@ -59,8 +59,7 @@
 	  
 
 	  <!-- content -->
-	  <hr>
-<h4 id="docker-–privileged-true-参数作用"><a href="#docker-–privileged-true-参数作用" class="headerlink" title="docker –privileged=true 参数作用"></a>docker –privileged=true 参数作用</h4><p>简单来说，就是增加容器的扩展特权，docker将允许访问主机上的所有设备。使用该参数，container内的root拥有真正的root权限，否则，container内的root只是外部的一个普通用户权限。</p>
+	  <h4 id="docker-–privileged-true-参数作用"><a href="#docker-–privileged-true-参数作用" class="headerlink" title="docker –privileged=true 参数作用"></a>docker –privileged=true 参数作用</h4><p>简单来说，就是增加容器的扩展特权，docker将允许访问主机上的所有设备。使用该参数，container内的root拥有真正的root权限，否则，container内的root只是外部的一个普通用户权限。</p>
 <h4 id="容器执行sh文件无权限-sh-Permission-denied"><a href="#容器执行sh文件无权限-sh-Permission-denied" class="headerlink" title="容器执行sh文件无权限 sh: Permission denied"></a>容器执行sh文件无权限 sh: Permission denied</h4><p>在Dockerfile中添加如下代码。USER帮助你切换到指定用户而已，改变之后以此身份执行 <code>RUN</code>, <code>CMD</code> 以及 <code>ENTRYPOINT</code> 命令。Chmod用来给文件读写执行权限。</p>
 <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USER</span> root</span><br><span class="line">chmod <span class="number">0755</span> 文件</span><br></pre></td></tr></table></figure>
 
