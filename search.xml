@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>linux常见问题</title>
+      <link href="/diary/2021/12/08/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/Linux%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"/>
+      <url>/diary/2021/12/08/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/Linux%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<p>1.env 获取所有环境变量 值为key=value列表</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 常见问题 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Docker常见问题</title>
       <link href="/diary/2021/12/08/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/Docker%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"/>
       <url>/diary/2021/12/08/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/Docker%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</url>
