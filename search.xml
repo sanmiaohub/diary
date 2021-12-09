@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Golang常见问题</title>
+      <link href="/diary/2021/12/09/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/Golang%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"/>
+      <url>/diary/2021/12/09/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/Golang%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<h4 id="go-mod-download下载模块异常"><a href="#go-mod-download下载模块异常" class="headerlink" title="go mod download下载模块异常"></a>go mod download下载模块异常</h4><p>报如下错误 go.mod file not found in current directory or any parent directory，错误原因，命令执行的当前目录层级不对，检查mod文件是否在当前目录下或者父级目录下。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go: cannot match &quot;all&quot;: go.mod file not found in current directory or any parent directory; see &#x27;go help modules&#x27;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 常见问题 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Git常见问题</title>
       <link href="/diary/2021/12/09/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/Git%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"/>
       <url>/diary/2021/12/09/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/Git%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</url>
