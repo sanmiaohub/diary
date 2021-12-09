@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>转载</title>
+      <link href="/diary/2021/12/09/%E6%9C%AA%E5%BD%92%E7%B1%BB/%E8%BD%AC%E8%BD%BD/"/>
+      <url>/diary/2021/12/09/%E6%9C%AA%E5%BD%92%E7%B1%BB/%E8%BD%AC%E8%BD%BD/</url>
+      
+        <content type="html"><![CDATA[<h4 id="终端显示颜色文字"><a href="#终端显示颜色文字" class="headerlink" title="终端显示颜色文字"></a>终端显示颜色文字</h4><p>转载文章 : <a href="https://blog.csdn.net/u014470361/article/details/81512330">https://blog.csdn.net/u014470361/article/details/81512330</a></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">printf(&quot;\033[1;40;32m color!!! \033[0m hello\n&quot;);</span><br><span class="line"></span><br><span class="line">\033 声明了转义序列的开始。</span><br><span class="line">[ 开始定义颜色。</span><br><span class="line">后面的 1 定义了高亮显示字符。</span><br><span class="line">然后是背景颜色，这里面是40，表示黑色背景。</span><br><span class="line">接着是前景颜色，这里面是32，表示绿色。</span><br><span class="line">\033[0m 关闭转义序列，\033[0m 是终端默认颜色。</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 未归类 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Golang常见问题</title>
       <link href="/diary/2021/12/09/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/Golang%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"/>
       <url>/diary/2021/12/09/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/Golang%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</url>
