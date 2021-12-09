@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Git常见问题</title>
+      <link href="/diary/2021/12/09/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/Git%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"/>
+      <url>/diary/2021/12/09/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/Git%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<h4 id="git删除本地和远程tag"><a href="#git删除本地和远程tag" class="headerlink" title="git删除本地和远程tag"></a>git删除本地和远程tag</h4><p>删除本地tag</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d tag-name</span><br></pre></td></tr></table></figure><p>删除远程tag</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin :refs/tags/tag-name</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 常见问题 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>在Centos环境安装Jenkins</title>
       <link href="/diary/2021/12/08/%E6%9C%AA%E5%BD%92%E7%B1%BB/%E5%9C%A8Centos%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85Jenkins/"/>
       <url>/diary/2021/12/08/%E6%9C%AA%E5%BD%92%E7%B1%BB/%E5%9C%A8Centos%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85Jenkins/</url>
