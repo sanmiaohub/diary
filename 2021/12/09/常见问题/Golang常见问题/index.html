@@ -74,6 +74,9 @@
 <p>第三方包（自己的）</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">module github.com/sanmiaohu/go-tools</span><br><span class="line"></span><br><span class="line">go 1.17</span><br></pre></td></tr></table></figure>
 
+<h4 id="日志logging实现方式"><a href="#日志logging实现方式" class="headerlink" title="日志logging实现方式"></a>日志logging实现方式</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 终端输出</span><br><span class="line">write, err := os.Stdout.Write([]byte(&quot;ssssss&quot;))</span><br><span class="line">// 文件写入</span><br><span class="line">file,err :=os.OpenFile(&quot;log1.json&quot;,os.O_WRONLY|os.O_APPEND|os.O_CREATE, os.ModeAppend|os.ModePerm)</span><br><span class="line">i,err := file.Write([]byte(&quot;&#123;\&quot;d11111sds\&quot;:\&quot;dsgssssfgg\&quot;&#125;&quot;))</span><br></pre></td></tr></table></figure>
+
+<p>可以是通过配置来获取按哪种方式去记录日志，记录的文本风格，按interface去实现多种风格</p>
 	  
 
 	  <div>
