@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title></title>
+      <link href="/diary/2022/02/18/%E5%8A%9B%E6%89%A3/%E5%9B%9E%E6%96%87%E6%95%B0/"/>
+      <url>/diary/2022/02/18/%E5%8A%9B%E6%89%A3/%E5%9B%9E%E6%96%87%E6%95%B0/</url>
+      
+        <content type="html"><![CDATA[<h3 id="回文数算法"><a href="#回文数算法" class="headerlink" title="回文数算法"></a>回文数算法</h3><p>给你一个整数 x ，如果 x 是一个回文整数，返回 true ；否则，返回 false 。</p><p>回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。</p><p>例如，121 是回文，而 123 不是。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">输入：x = 121</span><br><span class="line">输出：true</span><br><span class="line"></span><br><span class="line">输入：x = -121</span><br><span class="line">输出：false</span><br><span class="line">解释：从左向右读, 为 -121 。 从右向左读, 为 121- 。因此它不是一个回文数。</span><br><span class="line"></span><br><span class="line">输入：x = 10</span><br><span class="line">输出：false</span><br><span class="line">解释：从右向左读, 为 01 。因此它不是一个回文数。</span><br></pre></td></tr></table></figure><p>解决方案</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$num = $x;</span><br><span class="line">$cur = 0;</span><br><span class="line"></span><br><span class="line">while($num != 0) &#123;</span><br><span class="line">$cur = $cur * 10 + $num % 10;</span><br><span class="line">$num = (int)($num / 10);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>假设$x = 129，按以上代码，$cur和$num会是如下的变动</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">9</span><br><span class="line">12</span><br><span class="line"></span><br><span class="line">92</span><br><span class="line">1</span><br><span class="line"></span><br><span class="line">921</span><br><span class="line">0</span><br></pre></td></tr></table></figure><p>要把一个数字反转，一个一个数字来看</p><p>129 取余10 得9，剩下了12</p><p>12取余10 得2，剩下了1</p><p>1取余10 得1</p><p>反向计算，每去一位，就得反向进一位，就相当于取到9 ，进行9 <em>10 = 90，取到2 ，进行90</em> *10，取到900，这样得到了百位数。</p><p>所以每次进行 进位 和 加上取到的数就可以了。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>gitlab-ci安装配置</title>
       <link href="/diary/2021/12/16/%E6%9C%AA%E5%BD%92%E7%B1%BB/gitlab-ci%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/"/>
       <url>/diary/2021/12/16/%E6%9C%AA%E5%BD%92%E7%B1%BB/gitlab-ci%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</url>

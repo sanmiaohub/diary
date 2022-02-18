@@ -1,0 +1,178 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>三喵Notes</title>
+  <meta name="author" content="三喵">
+  
+  <meta name="description" content="回文数算法给你一个整数 x ，如果 x 是一个回文整数，返回 true ；否则，返回 false 。
+回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
+例如，121 是回文，而 123 不是。
+12345678910输入：x = 121输出：true输入：x = -121输出：fals">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="三喵Notes"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/diary/atom.xml" title="三喵Notes" type="application/atom+xml">
+  
+  
+    <link href="/diary/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/diary/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/diary/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/diary/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/diary/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/diary/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/diary/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/diary/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/diary/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/diary/">三喵Notes</a><span class="split"></span><span class="title"></span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2022-02-18</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  
+
+  
+	<div class="col-md-12">
+	  
+
+	  <!-- content -->
+	  <h3 id="回文数算法"><a href="#回文数算法" class="headerlink" title="回文数算法"></a>回文数算法</h3><p>给你一个整数 x ，如果 x 是一个回文整数，返回 true ；否则，返回 false 。</p>
+<p>回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。</p>
+<p>例如，121 是回文，而 123 不是。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">输入：x = 121</span><br><span class="line">输出：true</span><br><span class="line"></span><br><span class="line">输入：x = -121</span><br><span class="line">输出：false</span><br><span class="line">解释：从左向右读, 为 -121 。 从右向左读, 为 121- 。因此它不是一个回文数。</span><br><span class="line"></span><br><span class="line">输入：x = 10</span><br><span class="line">输出：false</span><br><span class="line">解释：从右向左读, 为 01 。因此它不是一个回文数。</span><br></pre></td></tr></table></figure>
+
+
+
+<p>解决方案</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$num = $x;</span><br><span class="line">$cur = 0;</span><br><span class="line"></span><br><span class="line">while($num != 0) &#123;</span><br><span class="line">		$cur = $cur * 10 + $num % 10;</span><br><span class="line">		$num = (int)($num / 10);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>假设$x = 129，按以上代码，$cur和$num会是如下的变动</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">9</span><br><span class="line">12</span><br><span class="line"></span><br><span class="line">92</span><br><span class="line">1</span><br><span class="line"></span><br><span class="line">921</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+
+<p>要把一个数字反转，一个一个数字来看</p>
+<p>129 取余10 得9，剩下了12</p>
+<p>12取余10 得2，剩下了1</p>
+<p>1取余10 得1</p>
+<p>反向计算，每去一位，就得反向进一位，就相当于取到9 ，进行9 <em>10 = 90，取到2 ，进行90</em> *10，取到900，这样得到了百位数。</p>
+<p>所以每次进行 进位 和 加上取到的数就可以了。</p>
+	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+	
+		
+			
+			
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+	
+	
+		<li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/diary/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next disabled"><a>next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2022 三喵
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a target="_blank" rel="noopener" href="http://github.com/wzpan/hexo-theme-wixo/">Wixo</a>.    
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/diary/js/jquery.imagesloaded.min.js"></script>
+<script src="/diary/js/gallery.js"></script>
+<script src="/diary/js/bootstrap.min.js"></script>
+<script src="/diary/js/jquery.tableofcontents.min.js"></script>
+<script src="/diary/js/tocgenerator.min.js"></script>
+<script src="/diary/js/main.js"></script>
+<script src="/diary/js/search.js"></script> 
+
+
+
+
+<link rel="stylesheet" href="/diary/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/diary/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/diary/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+</html>
