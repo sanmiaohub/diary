@@ -6,7 +6,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="zh-CN"><!--<![endif]-->
 <head>
     <meta charset="UTF-8">
-    <title>回文数算法</title>
+    <title>php开发异常记录</title>
 
     <meta name="author" content="三喵">
 
@@ -16,7 +16,7 @@
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
 
-    <link rel="canonical" href="https://esaiting.github.io/diary/2022/02/18/回文数/">
+    <link rel="canonical" href="https://esaiting.github.io/diary/2022/02/24/php/php开发异常记录/">
 
     
 
@@ -91,37 +91,19 @@
         <div>
     <article class="hentry" role="article">
         <header>
-            <h1 class="entry-title">回文数算法</h1>
+            <h1 class="entry-title">php开发异常记录</h1>
             <p class="meta">
-                <time datetime="2022-02-18T08:49:24.942Z" data-updated="true">Fri Feb 18 2022</time>
+                <time datetime="2022-02-24T14:45:21.000Z" data-updated="true">Thu Feb 24 2022</time>
             </p>
         </header>
         <div class="entry-content">
-            <h3 id="回文数算法"><a href="#回文数算法" class="headerlink" title="回文数算法"></a>回文数算法</h3><p>给你一个整数 x ，如果 x 是一个回文整数，返回 true ；否则，返回 false 。</p>
-<p>回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。</p>
-<p>例如，121 是回文，而 123 不是。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">输入：x = 121</span><br><span class="line">输出：true</span><br><span class="line"></span><br><span class="line">输入：x = -121</span><br><span class="line">输出：false</span><br><span class="line">解释：从左向右读, 为 -121 。 从右向左读, 为 121- 。因此它不是一个回文数。</span><br><span class="line"></span><br><span class="line">输入：x = 10</span><br><span class="line">输出：false</span><br><span class="line">解释：从右向左读, 为 01 。因此它不是一个回文数。</span><br></pre></td></tr></table></figure>
-
-
-
-<p>解决方案</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$num = $x;</span><br><span class="line">$cur = 0;</span><br><span class="line"></span><br><span class="line">while($num != 0) &#123;</span><br><span class="line">		$cur = $cur * 10 + $num % 10;</span><br><span class="line">		$num = (int)($num / 10);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>假设$x = 129，按以上代码，$cur和$num会是如下的变动</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">9</span><br><span class="line">12</span><br><span class="line"></span><br><span class="line">92</span><br><span class="line">1</span><br><span class="line"></span><br><span class="line">921</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
-
-<p>要把一个数字反转，一个一个数字来看</p>
-<p>129 取余10 得9，剩下了12</p>
-<p>12取余10 得2，剩下了1</p>
-<p>1取余10 得1</p>
-<p>反向计算，每去一位，就得反向进一位，就相当于取到9 ，进行9 * 10 = 90，取到2 ，进行90 * 10，取到900，这样得到了百位数。</p>
-<p>所以每次进行 进位 和 加上取余取到的数就可以了。</p>
+            <p>ss</p>
 
         </div>
         <footer>
             <p class="meta">
                 <span class="byline author vcard">Posted by <span class="fn">三喵</span></span>
-                <time datetime="2022-02-18T08:49:24.942Z" data-updated="true">Fri Feb 18 2022</time>
+                <time datetime="2022-02-24T14:45:21.000Z" data-updated="true">Thu Feb 24 2022</time>
                 
             </p>
             <div class="sharing">
@@ -130,11 +112,9 @@
 
             <p class="meta">
                 
-                <a class="basic-alignment left" href="/diary/" title="Previous Post: frp内网穿透">« frp内网穿透</a>
-                
 
                 
-                <a class="basic-alignment right" href="/diary/" title="Previous Post: gitlab-ci安装配置">gitlab-ci安装配置 »</a>
+                <a class="basic-alignment right" href="/diary/" title="Previous Post: frp内网穿透">frp内网穿透 »</a>
                 
             </p>
         </footer>
