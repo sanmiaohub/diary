@@ -1,0 +1,196 @@
+
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7" lang="zh-CN"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8" lang="zh-CN"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="zh-CN"><!--<![endif]-->
+<head>
+    <meta charset="UTF-8">
+    <title>在Centos环境安装Jenkins</title>
+
+    <meta name="author" content="三喵">
+
+    <link rel="shortcut icon" href="/diary/images/favicon.png">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
+
+    <link rel="canonical" href="https://esaiting.github.io/diary/2021/12/08/在Centos环境安装Jenkins/">
+
+    
+
+    
+
+    
+<script src="/diary/js/modernizr-2.0.js"></script>
+
+
+    
+<script src="/diary/js/jquery-1.9.1.js"></script>
+
+
+    
+
+    
+<script src="/diary/js/octo.js"></script>
+
+
+    
+<link rel="stylesheet" href="/diary/css/octo.css">
+
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet"
+          type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet"
+          type="text/css">
+
+    
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+
+<header role="banner">
+    <hgroup>
+        <h1><a href="/diary/">三喵notes</a></h1>
+        
+    </hgroup>
+</header>
+
+<nav role="navigation">
+    
+
+    <form action="https://google.com/search" method="get">
+        <fieldset role="search">
+            <input type="hidden" name="q" value="site:https://esaiting.github.io/diary/">
+            <input class="search" type="text" name="q" results="0" placeholder="Search">
+        </fieldset>
+    </form>
+
+    <ul class="main-navigation">
+        
+            <li><a href="/go">go</a></li>
+        
+            <li><a href="/php">php</a></li>
+        
+            <li><a href="/linux">linux</a></li>
+        
+            <li><a href="/devops">devOps</a></li>
+        
+    </ul>
+</nav>
+
+
+<div id="main">
+    <div id="content">
+        <div>
+    <article class="hentry" role="article">
+        <header>
+            <h1 class="entry-title">在Centos环境安装Jenkins</h1>
+            <p class="meta">
+                <time datetime="2021-12-08T10:12:50.000Z" data-updated="true">Wed Dec 08 2021</time>
+            </p>
+        </header>
+        <div class="entry-content">
+            <p>按以下步骤进行操作，操作环境Centos8.4，启动后，默认的端口号为8080，使用<a target="_blank" rel="noopener" href="http://ip:8080/">http://IP:8080</a> 即可访问进行初始化设置。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install java-1.8.0-openjdk</span><br><span class="line"></span><br><span class="line">sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo</span><br><span class="line"></span><br><span class="line">sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key</span><br><span class="line"></span><br><span class="line">sudo dnf install jenkins</span><br><span class="line"></span><br><span class="line">sudo systemctl start jenkins</span><br><span class="line"></span><br><span class="line">sudo systemctl enable jenkins</span><br><span class="line"></span><br><span class="line">systemctl status jenkins</span><br><span class="line"></span><br><span class="line">配置文件地址</span><br><span class="line">/etc/sysconfig/jenkins</span><br><span class="line"></span><br><span class="line">安装家目录</span><br><span class="line">JENKINS_HOME=/var/lib/jenkins</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        <footer>
+            <p class="meta">
+                <span class="byline author vcard">Posted by <span class="fn">三喵</span></span>
+                <time datetime="2021-12-08T10:12:50.000Z" data-updated="true">Wed Dec 08 2021</time>
+                
+            </p>
+            <div class="sharing">
+    
+</div>
+
+            <p class="meta">
+                
+                <a class="basic-alignment left" href="/diary/" title="Previous Post: Git常见问题">« Git常见问题</a>
+                
+
+                
+                <a class="basic-alignment right" href="/diary/" title="Previous Post: Linux常见问题">Linux常见问题 »</a>
+                
+            </p>
+        </footer>
+    </article>
+
+    
+
+</div>
+
+<aside class="sidebar">
+    <section class="odd">
+    <h1>Recent Posts</h1>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/diary/2022/02/24/frp%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">frp内网穿透</a></li><li class="post-list-item"><a class="post-list-link" href="/diary/2022/02/18/%E5%9B%9E%E6%96%87%E6%95%B0/">回文数算法</a></li><li class="post-list-item"><a class="post-list-link" href="/diary/2021/12/16/mac%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%88%B0linux/">mac上传文件到linux</a></li><li class="post-list-item"><a class="post-list-link" href="/diary/2021/12/16/gitlab-ci%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">gitlab-ci安装配置</a></li><li class="post-list-item"><a class="post-list-link" href="/diary/2021/12/09/%E8%BD%AC%E8%BD%BD/">转载</a></li><li class="post-list-item"><a class="post-list-link" href="/diary/2021/12/09/Golang%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">Golang常见问题</a></li><li class="post-list-item"><a class="post-list-link" href="/diary/2021/12/09/Git%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">Git常见问题</a></li><li class="post-list-item"><a class="post-list-link" href="/diary/2021/12/08/%E5%9C%A8Centos%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85Jenkins/">在Centos环境安装Jenkins</a></li><li class="post-list-item"><a class="post-list-link" href="/diary/2021/12/08/Linux%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">Linux常见问题</a></li><li class="post-list-item"><a class="post-list-link" href="/diary/2021/12/08/Docker%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">Docker常见问题</a></li></ul>
+</section><section class="even">
+    <h1>GitHub Repos</h1>
+    <ul id="gh_repos">
+        <li class="loading">Status updating&#8230;</li>
+    </ul>
+
+    <a target="_blank" rel="noopener" href="https://github.com/https://github.com/sanmiaohub">@https://github.com/sanmiaohub</a> on GitHub
+
+    <script>
+        $(document).ready(function(){
+            const options = {
+                user: 'https://github.com/sanmiaohub',
+                count: 0,
+                skip_forks: true,
+                target: '#gh_repos'
+            }
+
+            function escapeHtml(str) {
+                return $('<div/>').text(str).html();
+            }
+
+            function render(target, repos){
+                let i, fragment = '', t = $(target)[0];
+
+                for(i = 0; i < repos.length; i++) {
+                    fragment += '<li><a href="'+repos[i].html_url+'">'+repos[i].name+'</a><p>'+escapeHtml(repos[i].description||'')+'</p></li>';
+                }
+                t.innerHTML = fragment;
+            }
+
+            $.ajax({
+                url: "https://api.github.com/users/"+options.user+"/repos?sort=pushed&callback=?",
+                dataType: 'jsonp',
+                error: function (err) {
+                    $(options.target + ' li.loading').addClass('error').text("Error loading feed");
+                },
+                success: function(data) {
+                    var repos = [];
+                    if (!data || !data.data) { return; }
+                    for (var i = 0; i < data.data.length; i++) {
+                        if (options.skip_forks && data.data[i].fork) { continue; }
+                        repos.push(data.data[i]);
+                    }
+                    if (options.count) { repos.splice(options.count); }
+                    render(options.target, repos);
+                }
+            });
+        });
+    </script>
+</section>
+</aside>
+
+    </div>
+</div>
+
+<footer role="contentinfo">
+    <p>
+        Copyright © 2022 - 三喵 -
+        <span class="credit">Generated using <a target="_blank" rel="noopener" href="https://github.com/jbreckmckye/hexo-theme-octo">Octo theme</a> for <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></span>
+    </p>
+</footer>
+
+
+
+</body>
+</html>
