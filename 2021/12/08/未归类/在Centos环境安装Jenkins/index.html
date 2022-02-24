@@ -1,169 +1,224 @@
-<!DOCTYPE HTML>
-<html>
+
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7" lang="zh-Hans"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8" lang="zh-Hans"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="zh-Hans"><!--<![endif]-->
 <head>
-  <meta charset="utf-8">
-  
-  <title>在Centos环境安装Jenkins | 三喵Notes</title>
-  <meta name="author" content="三喵">
-  
-  <meta name="description" content="按以下步骤进行操作，操作环境Centos8.4，启动后，默认的端口号为8080，使用http://IP:8080 即可访问进行初始化设置。
-1234567891011121314151617181920sudo yum install java-1.8.0-openjdksudo wget -O /">
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="UTF-8">
+    <title>在Centos环境安装Jenkins</title>
 
-  <meta property="og:title" content="在Centos环境安装Jenkins"/>
-  <meta property="og:site_name" content="三喵Notes"/>
+    <meta name="author" content="三喵">
 
-  
-    <meta property="og:image" content=""/>
-  
+    <link rel="shortcut icon" href="/diary/images/favicon.png">
 
-  
-    <link rel="alternative" href="/diary/atom.xml" title="三喵Notes" type="application/atom+xml">
-  
-  
-    <link href="/diary/favicon.png" rel="icon">
-  
-  
-  <link rel="stylesheet" href="/diary/css/bootstrap.min.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/diary/css/font-awesome.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/diary/css/style.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/diary/css/highlight.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/diary/css/google-fonts.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/diary/css/responsive.css" media="screen" type="text/css">  
-  <link rel="stylesheet" href="/diary/css/sidenav.css" media="screen" type="text/css">  
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
 
-  <script src="/diary/js/jquery-2.0.3.min.js"></script>
+    <link rel="canonical" href="https://esaiting.github.io/diary/2021/12/08/未归类/在Centos环境安装Jenkins/">
 
-  <!-- analytics -->
-  
+    
+        <link rel="alternate" href="/diary/atom.xml" type="application/atom+xml">
+    
+
+    
+
+    
+<script src="/diary/js/modernizr-2.0.js"></script>
+
+
+    
+<script src="/diary/js/jquery-1.9.1.js"></script>
+
+
+    
+    <script>window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+
+            t._e = [];
+            t.ready = function(f) {
+                t._e.push(f);
+            };
+
+            return t;
+        }(document, "script", "twitter-wjs"));</script>
+
+    
+    <link rel="me" href="https://twitter.com/your_twitter">
+    
+
+
+
+    
+<script src="/diary/js/octo.js"></script>
+
+
+    
+<link rel="stylesheet" href="/diary/css/octo.css">
+
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet"
+          type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet"
+          type="text/css">
+
+    
 
 <meta name="generator" content="Hexo 5.4.0"></head>
+<body>
 
-<body id="body" data-spy="scroll" data-target=".toc">
-  <div class="container" id="container">
-	<div class="content">
-	  <div class="page-header">		
-  <h1><a class="brand" href="/diary/">三喵Notes</a><span class="split"></span><span class="title">在Centos环境安装Jenkins</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2021-12-08</span></h1>
-</div>		
+<header role="banner">
+    <hgroup>
+        <h1><a href="/diary/">三喵Notes</a></h1>
+        
+    </hgroup>
+</header>
 
-<div class="row page">
-  <!-- cols -->	
-  
-  
+<nav role="navigation">
+    
+        <ul class="subscription" data-subscription="rss">
+            <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+        </ul>
+    
 
-  
-	<div class="col-md-12">
-	  
+    <form action="https://google.com/search" method="get">
+        <fieldset role="search">
+            <input type="hidden" name="q" value="site:https://esaiting.github.io/diary/">
+            <input class="search" type="text" name="q" results="0" placeholder="Search">
+        </fieldset>
+    </form>
 
-	  <!-- content -->
-	  <p>按以下步骤进行操作，操作环境Centos8.4，启动后，默认的端口号为8080，使用<a target="_blank" rel="noopener" href="http://ip:8080/">http://IP:8080</a> 即可访问进行初始化设置。</p>
+    <ul class="main-navigation">
+        
+            <li><a href="/">Blog</a></li>
+        
+            <li><a href="/archives">Archives</a></li>
+        
+    </ul>
+</nav>
+
+
+<div id="main">
+    <div id="content">
+        <div>
+    <article class="hentry" role="article">
+        <header>
+            <h1 class="entry-title">在Centos环境安装Jenkins</h1>
+            <p class="meta">
+                <time datetime="2021-12-08T10:12:50.000Z" data-updated="true">Wed Dec 08 2021</time>
+            </p>
+        </header>
+        <div class="entry-content">
+            <p>按以下步骤进行操作，操作环境Centos8.4，启动后，默认的端口号为8080，使用<a target="_blank" rel="noopener" href="http://ip:8080/">http://IP:8080</a> 即可访问进行初始化设置。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install java-1.8.0-openjdk</span><br><span class="line"></span><br><span class="line">sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo</span><br><span class="line"></span><br><span class="line">sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key</span><br><span class="line"></span><br><span class="line">sudo dnf install jenkins</span><br><span class="line"></span><br><span class="line">sudo systemctl start jenkins</span><br><span class="line"></span><br><span class="line">sudo systemctl enable jenkins</span><br><span class="line"></span><br><span class="line">systemctl status jenkins</span><br><span class="line"></span><br><span class="line">配置文件地址</span><br><span class="line">/etc/sysconfig/jenkins</span><br><span class="line"></span><br><span class="line">安装家目录</span><br><span class="line">JENKINS_HOME=/var/lib/jenkins</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-	  
 
-	  <div>
-  		<center>
-		  <div class="pagination">
-<ul class="pagination">
-	
-	
-	
-	
-	
-	
-		
-	
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-			
-		
-	
-		
-	
-		
-	
-		
-			
-			
-		
-	
-		
-	
-		
-	
-	
-	
-		<li class="prev"><a href="/diary/2021/12/09/%E6%9C%AA%E5%BD%92%E7%B1%BB/%E8%BD%AC%E8%BD%BD/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
-	
-	<li><a href="/diary/"><i class="fa fa-archive"></i>Home</a></li>
-	
-		<li class="next disabled"><a>next<i class="fa fa-arrow-circle-o-right"></i></a></li>
-	
-</ul>
+        </div>
+        <footer>
+            <p class="meta">
+                <span class="byline author vcard">Posted by <span class="fn">三喵</span></span>
+                <time datetime="2021-12-08T10:12:50.000Z" data-updated="true">Wed Dec 08 2021</time>
+                
+            </p>
+            <div class="sharing">
+    
+        <a class="twitter-share-button"
+           target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?text=%E5%9C%A8Centos%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85Jenkins">
+            Tweet
+        </a>
+    
 </div>
 
-		</center>
-	  </div>
-	  
-	</div> <!-- col-md-9/col-md-12 -->
-	
-  </div><!-- row -->
+            <p class="meta">
+                
+                <a class="basic-alignment left" href="/diary/" title="Previous Post: Git常见问题">« Git常见问题</a>
+                
 
-	</div>
-  </div>
-  <div class="container-narrow">
-	<footer> <p>
-  &copy; 2022 三喵
-  
-      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a target="_blank" rel="noopener" href="http://github.com/wzpan/hexo-theme-wixo/">Wixo</a>.    
-</p> </footer>
-  </div> <!-- container-narrow -->
-  
-<a id="gotop" href="#">   
-  <span>▲</span> 
-</a>
+                
+                <a class="basic-alignment right" href="/diary/" title="Previous Post: Linux常见问题">Linux常见问题 »</a>
+                
+            </p>
+        </footer>
+    </article>
 
-<script src="/diary/js/jquery.imagesloaded.min.js"></script>
-<script src="/diary/js/gallery.js"></script>
-<script src="/diary/js/bootstrap.min.js"></script>
-<script src="/diary/js/jquery.tableofcontents.min.js"></script>
-<script src="/diary/js/tocgenerator.min.js"></script>
-<script src="/diary/js/main.js"></script>
-<script src="/diary/js/search.js"></script> 
+    
 
+</div>
 
+<aside class="sidebar">
+    <section class="odd">
+    <h1>Recent Posts</h1>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/diary/2022/02/24/frp%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">frp内网穿透</a></li><li class="post-list-item"><a class="post-list-link" href="/diary/2022/02/18/%E5%8A%9B%E6%89%A3/%E5%9B%9E%E6%96%87%E6%95%B0/">回文数算法</a></li><li class="post-list-item"><a class="post-list-link" href="/diary/2021/12/16/%E6%9C%AA%E5%BD%92%E7%B1%BB/gitlab-ci%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">gitlab-ci安装配置</a></li><li class="post-list-item"><a class="post-list-link" href="/diary/2021/12/16/%E6%9C%AA%E5%BD%92%E7%B1%BB/mac%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%88%B0linux/">mac上传文件到linux</a></li><li class="post-list-item"><a class="post-list-link" href="/diary/2021/12/09/%E6%9C%AA%E5%BD%92%E7%B1%BB/%E8%BD%AC%E8%BD%BD/">转载</a></li><li class="post-list-item"><a class="post-list-link" href="/diary/2021/12/09/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/Golang%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">Golang常见问题</a></li><li class="post-list-item"><a class="post-list-link" href="/diary/2021/12/09/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/Git%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">Git常见问题</a></li><li class="post-list-item"><a class="post-list-link" href="/diary/2021/12/08/%E6%9C%AA%E5%BD%92%E7%B1%BB/%E5%9C%A8Centos%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85Jenkins/">在Centos环境安装Jenkins</a></li><li class="post-list-item"><a class="post-list-link" href="/diary/2021/12/08/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/Linux%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">Linux常见问题</a></li><li class="post-list-item"><a class="post-list-link" href="/diary/2021/12/08/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/Docker%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">Docker常见问题</a></li></ul>
+</section><section class="even">
+    <h1>GitHub Repos</h1>
+    <ul id="gh_repos">
+        <li class="loading">Status updating&#8230;</li>
+    </ul>
 
+    <a target="_blank" rel="noopener" href="https://github.com/your_github">@your_github</a> on GitHub
 
-<link rel="stylesheet" href="/diary/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/diary/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
+    <script>
+        $(document).ready(function(){
+            const options = {
+                user: 'your_github',
+                count: 0,
+                skip_forks: true,
+                target: '#gh_repos'
+            }
 
+            function escapeHtml(str) {
+                return $('<div/>').text(str).html();
+            }
 
+            function render(target, repos){
+                let i, fragment = '', t = $(target)[0];
 
-   <script type="text/javascript">      
-     var search_path = "search.xml";
-	 if (search_path.length == 0) {
-	 	search_path = "search.xml";
-	 }
-	 var path = "/diary/" + search_path;
-     searchFunc(path, 'local-search-input', 'local-search-result');
-   </script>
+                for(i = 0; i < repos.length; i++) {
+                    fragment += '<li><a href="'+repos[i].html_url+'">'+repos[i].name+'</a><p>'+escapeHtml(repos[i].description||'')+'</p></li>';
+                }
+                t.innerHTML = fragment;
+            }
+
+            $.ajax({
+                url: "https://api.github.com/users/"+options.user+"/repos?sort=pushed&callback=?",
+                dataType: 'jsonp',
+                error: function (err) {
+                    $(options.target + ' li.loading').addClass('error').text("Error loading feed");
+                },
+                success: function(data) {
+                    var repos = [];
+                    if (!data || !data.data) { return; }
+                    for (var i = 0; i < data.data.length; i++) {
+                        if (options.skip_forks && data.data[i].fork) { continue; }
+                        repos.push(data.data[i]);
+                    }
+                    if (options.count) { repos.splice(options.count); }
+                    render(options.target, repos);
+                }
+            });
+        });
+    </script>
+</section>
+</aside>
+
+    </div>
+</div>
+
+<footer role="contentinfo">
+    <p>
+        Copyright © 2022 - 三喵 -
+        <span class="credit">Generated using <a target="_blank" rel="noopener" href="https://github.com/jbreckmckye/hexo-theme-octo">Octo theme</a> for <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></span>
+    </p>
+</footer>
+
 
 
 </body>
