@@ -186,8 +186,10 @@
         repo: 'diary',
         owner: 'sanmiaohub',
         admin: ['sanmiaohub'],
-        id: md5(window.location.href)
+        id: decodeURI(location.pathname),
+        distractionFreeMode: true
     });
+
     gitalk.render('comment-container');
     
 

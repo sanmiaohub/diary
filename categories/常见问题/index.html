@@ -124,7 +124,7 @@
                     2021-12-09
                     </span>
                     <span class="archive-post-title">
-                        <a class="archive-post-link" href="/diary/2021/12/09/Git%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">Git常见问题</a>
+                        <a class="archive-post-link" href="/diary/2021/12/09/Golang%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">Golang常见问题</a>
                     </span>
                 </div>
             
@@ -145,7 +145,7 @@
                     2021-12-09
                     </span>
                     <span class="archive-post-title">
-                        <a class="archive-post-link" href="/diary/2021/12/09/Golang%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">Golang常见问题</a>
+                        <a class="archive-post-link" href="/diary/2021/12/09/Git%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">Git常见问题</a>
                     </span>
                 </div>
             
@@ -278,8 +278,10 @@
         repo: 'diary',
         owner: 'sanmiaohub',
         admin: ['sanmiaohub'],
-        id: md5(window.location.href)
+        id: decodeURI(location.pathname),
+        distractionFreeMode: true
     });
+
     gitalk.render('comment-container');
     
 

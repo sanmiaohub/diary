@@ -208,7 +208,7 @@
             </div>
             <div class="post-content">
                 
-                    <p>scp   frp_0.33.0_linux_amd64.tar.gz    <a href="mailto:&#x72;&#x6f;&#x6f;&#116;&#x40;&#x31;&#x39;&#50;&#46;&#49;&#x36;&#56;&#x2e;&#x33;&#x31;&#46;&#x36;&#x35;">&#x72;&#x6f;&#x6f;&#116;&#x40;&#x31;&#x39;&#50;&#46;&#49;&#x36;&#56;&#x2e;&#x33;&#x31;&#46;&#x36;&#x35;</a>:~/</p>
+                    <p>scp   frp_0.33.0_linux_amd64.tar.gz    <a href="mailto:&#114;&#x6f;&#111;&#x74;&#x40;&#x31;&#x39;&#50;&#x2e;&#49;&#x36;&#x38;&#x2e;&#x33;&#49;&#46;&#x36;&#53;">&#114;&#x6f;&#111;&#x74;&#x40;&#x31;&#x39;&#50;&#x2e;&#49;&#x36;&#x38;&#x2e;&#x33;&#49;&#46;&#x36;&#53;</a>:~/</p>
 
                 
             </div>
@@ -460,8 +460,10 @@
         repo: 'diary',
         owner: 'sanmiaohub',
         admin: ['sanmiaohub'],
-        id: md5(window.location.href)
+        id: decodeURI(location.pathname),
+        distractionFreeMode: true
     });
+
     gitalk.render('comment-container');
     
 
