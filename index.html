@@ -160,28 +160,6 @@
     
         <article class="post-abstract">
             <div class="post-title">
-                <h2><a class="post-title-link" href="/diary/2021/12/16/mac%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%88%B0linux/">mac上传文件到linux</a></h2>
-            </div>
-            <div class="post-meta">
-                <span class="post-time">2021-12-16</span>
-                
-                <span class="post-category">
-                    
-                    <a class="category" href="/diary/categories/%E6%9C%AA%E5%BD%92%E7%B1%BB/">未归类</a>
-                    
-                </span>
-                
-            </div>
-            <div class="post-content">
-                
-                    <p>scp   frp_0.33.0_linux_amd64.tar.gz    <a href="mailto:&#114;&#x6f;&#x6f;&#116;&#64;&#x31;&#x39;&#50;&#46;&#x31;&#54;&#56;&#46;&#51;&#x31;&#x2e;&#x36;&#x35;">&#114;&#x6f;&#x6f;&#116;&#64;&#x31;&#x39;&#50;&#46;&#x31;&#54;&#56;&#46;&#51;&#x31;&#x2e;&#x36;&#x35;</a>:~/</p>
-
-                
-            </div>
-        </article>
-    
-        <article class="post-abstract">
-            <div class="post-title">
                 <h2><a class="post-title-link" href="/diary/2021/12/16/gitlab-ci%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">gitlab-ci安装配置</a></h2>
             </div>
             <div class="post-meta">
@@ -209,6 +187,28 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># Download the binary for your system</span><br><span class="line">sudo curl -L --output /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64</span><br><span class="line"></span><br><span class="line"># Give it permissions to execute</span><br><span class="line">sudo chmod +x /usr/local/bin/gitlab-runner</span><br><span class="line"></span><br><span class="line"># Create a GitLab CI user</span><br><span class="line">sudo useradd --comment &#x27;GitLab Runner&#x27; --create-home gitlab-runner --shell /bin/bash</span><br><span class="line"></span><br><span class="line"># Install and run as service</span><br><span class="line">sudo gitlab-runner install --user=gitlab-runner --working-directory=/home/gitlab-runner</span><br><span class="line">sudo gitlab-runner start</span><br><span class="line"></span><br><span class="line">sudo gitlab-runner register --url https://gitlab.com/ --registration-token $REGISTRATION_TOKEN</span><br></pre></td></tr></table></figure>
 
 <p>3 推送代码即可触发。</p>
+
+                
+            </div>
+        </article>
+    
+        <article class="post-abstract">
+            <div class="post-title">
+                <h2><a class="post-title-link" href="/diary/2021/12/16/mac%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%88%B0linux/">mac上传文件到linux</a></h2>
+            </div>
+            <div class="post-meta">
+                <span class="post-time">2021-12-16</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/diary/categories/%E6%9C%AA%E5%BD%92%E7%B1%BB/">未归类</a>
+                    
+                </span>
+                
+            </div>
+            <div class="post-content">
+                
+                    <p>scp   frp_0.33.0_linux_amd64.tar.gz    <a href="mailto:&#114;&#x6f;&#x6f;&#x74;&#x40;&#x31;&#57;&#x32;&#x2e;&#49;&#x36;&#56;&#46;&#x33;&#x31;&#x2e;&#54;&#x35;">&#114;&#x6f;&#x6f;&#x74;&#x40;&#x31;&#57;&#x32;&#x2e;&#49;&#x36;&#56;&#46;&#x33;&#x31;&#x2e;&#54;&#x35;</a>:~/</p>
 
                 
             </div>
