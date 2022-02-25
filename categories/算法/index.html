@@ -229,25 +229,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+
 <script src="/diary/js/index.js"></script>
-
-
-<script src="/diary/js/gitment.browser.js"></script>
 
 
 
 <script>
     
-    var gitment = new Gitment({
-        id: '',
-        owner: 'sanmiaohub',
+    var gitalk = new Gitalk({
+        clientID: 'ac5bcf4f0c99189ff836',
+        clientSecret: '35001628275065c8216c7dac9cdff00ddcda1c88',
         repo: 'diary',
-        oauth: {
-            client_id: 'ac5bcf4f0c99189ff836',
-            client_secret: '35001628275065c8216c7dac9cdff00ddcda1c88'
-        }
+        owner: 'sanmiaohub',
+        admin: ['sanmiaohub'],
     });
-    gitment.render('comment-container');
+    gitalk.render('comment-container');
     
 
 </script>
