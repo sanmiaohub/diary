@@ -290,6 +290,17 @@
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     
+    var gitment = new Gitment({
+        id: '',
+        owner: 'sanmiaohub',
+        repo: 'https://sanmiaohub.github.io/',
+        oauth: {
+            client_id: 'ac5bcf4f0c99189ff836',
+            client_secret: '35001628275065c8216c7dac9cdff00ddcda1c88'
+        }
+    });
+    gitment.render('comment-container');
+    
 
 </script>
 </html>
