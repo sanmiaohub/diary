@@ -230,6 +230,8 @@ h6 {
         text-decoration: underline; }
     .post-abstract .post-content ul, .post-whole .post-content ul {
       padding-left: 0; }
+      .post-abstract .post-content ul li, .post-whole .post-content ul li {
+        margin-left: 1em; }
 
 .post-abstract {
   padding-bottom: 20px;
@@ -240,6 +242,8 @@ h6 {
 
 .post-whole .post-content {
   border-bottom: 1px solid #e3e3e3; }
+  .post-whole .post-content ul li {
+    margin-left: 1em; }
 
 .post-whole .post-tag {
   padding: 15px 0; }
