@@ -233,7 +233,7 @@ h6 {
       .post-abstract .post-content ul li, .post-whole .post-content ul li {
         margin-left: 1em; }
     .post-abstract .post-content ol, .post-whole .post-content ol {
-      padding-inline-start: 0px; }
+      padding-inline-start: 1em; }
 
 .post-abstract {
   padding-bottom: 20px;
@@ -247,7 +247,7 @@ h6 {
   .post-whole .post-content ul li {
     margin-left: 1em; }
   .post-whole .post-content ol {
-    padding-inline-start: 0px; }
+    padding-inline-start: 1em; }
 
 .post-whole .post-tag {
   padding: 15px 0; }
