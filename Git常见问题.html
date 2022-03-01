@@ -83,13 +83,13 @@
         <div class="posts">
     <article class="post-whole">
         <div class="post-title">
-            <h2 class="title">回文数算法</h2>
+            <h2 class="title">Git常见问题</h2>
             <div class="post-meta">
-                <span class="post-time">2022-02-18</span>
+                <span class="post-time">2021-12-09</span>
                 
                 <span class="post-category">
                     
-                    <a class="category" href="/diary/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                    <a class="category" href="/diary/categories/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">常见问题</a>
                     
                 </span>
                 
@@ -98,41 +98,26 @@
         </div>
         <div class="post-toc" id="post-toc">
     <strong class="post-toc-title">目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E6%96%87%E6%95%B0%E7%AE%97%E6%B3%95"><span class="toc-text">回文数算法</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#git%E5%88%A0%E9%99%A4%E6%9C%AC%E5%9C%B0%E5%92%8C%E8%BF%9C%E7%A8%8Btag"><span class="toc-text">git删除本地和远程tag</span></a></li></ol>
     <div class="back-to-top" id="back-to-top">
         <a href="javascript:void(0);">回到顶部</a>
     </div>
 </div>
         <div class="post-content">
-            <h3 id="回文数算法"><a href="#回文数算法" class="headerlink" title="回文数算法"></a>回文数算法</h3><p>给你一个整数 x ，如果 x 是一个回文整数，返回 true ；否则，返回 false 。</p>
-<p>回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。</p>
+            <h4 id="git删除本地和远程tag"><a href="#git删除本地和远程tag" class="headerlink" title="git删除本地和远程tag"></a>git删除本地和远程tag</h4><p>删除本地tag</p>
 <span id="more"></span>
 
-<p>例如，121 是回文，而 123 不是。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">输入：x = 121</span><br><span class="line">输出：true</span><br><span class="line"></span><br><span class="line">输入：x = -121</span><br><span class="line">输出：false</span><br><span class="line">解释：从左向右读, 为 -121 。 从右向左读, 为 121- 。因此它不是一个回文数。</span><br><span class="line"></span><br><span class="line">输入：x = 10</span><br><span class="line">输出：false</span><br><span class="line">解释：从右向左读, 为 01 。因此它不是一个回文数。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d tag-name</span><br></pre></td></tr></table></figure>
 
+<p>删除远程tag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin :refs/tags/tag-name</span><br></pre></td></tr></table></figure>
 
-
-<p>解决方案</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$num = $x;</span><br><span class="line">$cur = 0;</span><br><span class="line"></span><br><span class="line">while($num != 0) &#123;</span><br><span class="line">		$cur = $cur * 10 + $num % 10;</span><br><span class="line">		$num = (int)($num / 10);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>假设$x = 129，按以上代码，$cur和$num会是如下的变动</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">9</span><br><span class="line">12</span><br><span class="line"></span><br><span class="line">92</span><br><span class="line">1</span><br><span class="line"></span><br><span class="line">921</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
-
-<p>要把一个数字反转，一个一个数字来看</p>
-<p>129 取余10 得9，剩下了12</p>
-<p>12取余10 得2，剩下了1</p>
-<p>1取余10 得1</p>
-<p>反向计算，每去一位，就得反向进一位，就相当于取到9 ，进行9 * 10 = 90，取到2 ，进行90 * 10，取到900，这样得到了百位数。</p>
-<p>所以每次进行 进位 和 加上取余取到的数就可以了。</p>
 
         </div>
         
         <div class="post-tag">
             
-            <a class="tag" href="/diary/tags/%E7%AE%97%E6%B3%95/" title="算法">算法</a>
-            
-            <a class="tag" href="/diary/tags/leetcode/" title="leetcode">leetcode</a>
+            <a class="tag" href="/diary/tags/git/" title="git">git</a>
             
         </div>
         
@@ -141,15 +126,15 @@
 <div class="paginator">
     
         
-            <a class="prev" href="/diary/2022/02/24/%E4%BD%BF%E7%94%A8frp%E8%BF%9B%E8%A1%8C%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">
+            <a class="prev" href="/diary/Golang%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98.html">
                 <i class="iconfont icon-prev"></i>
-                <span class="nav-default">使用frp进行内网穿透</span>
+                <span class="nav-default">Golang常见问题</span>
                 <span class="nav-mobile">上一篇</span>
             </a>
         
         
-            <a class="next" href="/diary/2021/12/16/gitlab-ci%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">
-                <span class="nav-default">gitlab-ci安装配置</span>
+            <a class="next" href="/diary/%E5%9C%A8Centos%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85Jenkins.html">
+                <span class="nav-default">在Centos环境安装Jenkins</span>
                 <span class="nav-mobile">下一篇</span>
                 <i class="iconfont icon-next"></i>
             </a>

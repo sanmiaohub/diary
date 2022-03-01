@@ -150,8 +150,14 @@
  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 复制配置到systemd配置文件夹中</span><br><span class="line">cp systemd/frps.service /usr/lib/systemd/system/</span><br><span class="line"># 启用frps</span><br><span class="line">systemctl enable frps</span><br><span class="line"># 启动frps</span><br><span class="line">systemctl start frps</span><br></pre></td></tr></table></figure></li>
 </ol>
 <ol start="4">
-<li>login to server failed: dial tcp x.xx.x.xxx:8000: connect: connection ref，客户端出现这个错误，检查客户端和服务端的bind_port和server_port一致不。</li>
-<li>supervisord ERROR (spawn error)，出现这个错误，有一种可能是程序没执行起来，可以执行程序命令，看是否正常，确保没问题，在使用supervisord进行重启job。</li>
+<li><p>login to server failed: dial tcp x.xx.x.xxx:8000: connect: connection ref，客户端出现这个错误，检查客户端和服务端的bind_port和server_port一致不。</p>
+</li>
+<li><p>supervisord ERROR (spawn error)，出现这个错误，有一种可能是程序没执行起来，可以执行程序命令，看是否正常，确保没问题，在使用supervisord进行重启job。</p>
+</li>
+<li><p>frps日志写入无权限，systemd的frps.service配置中的user把nobody改为root，在改之前，先在进行systemctl stop frps，然后编辑修改，systemctl daemon-reload执行重新加载服务配置文件，然后在启动systemctl start frps。完成后可以去查看日志文件中是否写入了日志。</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line"># 这里改为root即可</span><br><span class="line">User=nobody</span><br><span class="line">Restart=on-failure</span><br><span class="line">RestartSec=5s</span><br><span class="line">ExecStart=/usr/bin/frps -c /etc/frp/frps.ini</span><br><span class="line">LimitNOFILE=1048576</span><br></pre></td></tr></table></figure>
+
+</li>
 </ol>
 
         </div>
@@ -169,14 +175,14 @@
 <div class="paginator">
     
         
-            <a class="prev" href="/diary/2022/02/25/%E5%9F%BA%E4%BA%8Ehexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+            <a class="prev" href="/diary/%E5%9F%BA%E4%BA%8Ehexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2.html">
                 <i class="iconfont icon-prev"></i>
                 <span class="nav-default">基于hexo搭建个人博客</span>
                 <span class="nav-mobile">上一篇</span>
             </a>
         
         
-            <a class="next" href="/diary/2022/02/18/%E5%9B%9E%E6%96%87%E6%95%B0/">
+            <a class="next" href="/diary/%E5%9B%9E%E6%96%87%E6%95%B0.html">
                 <span class="nav-default">回文数算法</span>
                 <span class="nav-mobile">下一篇</span>
                 <i class="iconfont icon-next"></i>

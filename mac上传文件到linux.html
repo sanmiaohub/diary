@@ -83,13 +83,13 @@
         <div class="posts">
     <article class="post-whole">
         <div class="post-title">
-            <h2 class="title">在Centos环境安装Jenkins</h2>
+            <h2 class="title">mac上传文件到linux</h2>
             <div class="post-meta">
-                <span class="post-time">2021-12-08</span>
+                <span class="post-time">2021-12-16</span>
                 
                 <span class="post-category">
                     
-                    <a class="category" href="/diary/categories/Devops/">Devops</a>
+                    <a class="category" href="/diary/categories/%E6%9C%AA%E5%BD%92%E7%B1%BB/">未归类</a>
                     
                 </span>
                 
@@ -104,22 +104,9 @@
     </div>
 </div>
         <div class="post-content">
-            <p>按以下步骤进行操作，操作环境Centos8.4，启动后，默认的端口号为8080，使用<a target="_blank" rel="noopener" href="http://ip:8080/">http://IP:8080</a> 即可访问进行初始化设置。</p>
+            <p>scp   frp_0.33.0_linux_amd64.tar.gz    <a href="mailto:&#x72;&#x6f;&#x6f;&#116;&#x40;&#x31;&#x39;&#50;&#x2e;&#49;&#54;&#56;&#46;&#x33;&#x31;&#x2e;&#54;&#53;">&#x72;&#x6f;&#x6f;&#116;&#x40;&#x31;&#x39;&#50;&#x2e;&#49;&#54;&#56;&#46;&#x33;&#x31;&#x2e;&#54;&#53;</a>:~/</p>
 <span id="more"></span>
 
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install java-1.8.0-openjdk</span><br><span class="line"></span><br><span class="line">sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo</span><br><span class="line"></span><br><span class="line">sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key</span><br><span class="line"></span><br><span class="line">sudo dnf install jenkins</span><br><span class="line"></span><br><span class="line">sudo systemctl start jenkins</span><br><span class="line"></span><br><span class="line">sudo systemctl enable jenkins</span><br><span class="line"></span><br><span class="line">systemctl status jenkins</span><br><span class="line"></span><br><span class="line">配置文件地址</span><br><span class="line">/etc/sysconfig/jenkins</span><br><span class="line"></span><br><span class="line">安装家目录</span><br><span class="line">JENKINS_HOME=/var/lib/jenkins</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-        </div>
-        
-        <div class="post-tag">
-            
-            <a class="tag" href="/diary/tags/Linux/" title="Linux">Linux</a>
-            
-            <a class="tag" href="/diary/tags/Centos/" title="Centos">Centos</a>
-            
-            <a class="tag" href="/diary/tags/Jenkins/" title="Jenkins">Jenkins</a>
-            
         </div>
         
     </article>
@@ -127,15 +114,15 @@
 <div class="paginator">
     
         
-            <a class="prev" href="/diary/2021/12/09/Git%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
+            <a class="prev" href="/diary/gitlab-ci%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.html">
                 <i class="iconfont icon-prev"></i>
-                <span class="nav-default">Git常见问题</span>
+                <span class="nav-default">gitlab-ci安装配置</span>
                 <span class="nav-mobile">上一篇</span>
             </a>
         
         
-            <a class="next" href="/diary/2021/12/08/Linux%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
-                <span class="nav-default">Linux常见问题</span>
+            <a class="next" href="/diary/%E8%BD%AC%E8%BD%BD.html">
+                <span class="nav-default">转载</span>
                 <span class="nav-mobile">下一篇</span>
                 <i class="iconfont icon-next"></i>
             </a>
