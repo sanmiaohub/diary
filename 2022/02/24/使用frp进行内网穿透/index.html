@@ -98,7 +98,7 @@
         </div>
         <div class="post-toc" id="post-toc">
     <strong class="post-toc-title">目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-text">实现原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80"><span class="toc-text">下载地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E9%85%8D%E7%BD%AE"><span class="toc-text">启动配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E9%93%BE%E6%8E%A5"><span class="toc-text">远程链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">注意事项</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-text">实现原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80"><span class="toc-text">下载地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E9%85%8D%E7%BD%AE"><span class="toc-text">启动配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E9%93%BE%E6%8E%A5"><span class="toc-text">远程链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E7%94%A8WEB%E6%9C%8D%E5%8A%A1"><span class="toc-text">启用WEB服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">注意事项</span></a></li></ol>
     <div class="back-to-top" id="back-to-top">
         <a href="javascript:void(0);">回到顶部</a>
     </div>
@@ -130,14 +130,28 @@
 <p>修改 frps.ini 配置文件，然后通过 <code>./frps -c ./frps.ini</code> 启动服务端，</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bind_port为监听端口，token为授权码，都和上面的客户端配置保持一致</span></span><br><span class="line"><span class="section">[common]</span></span><br><span class="line"><span class="attr">bind_port</span> = <span class="number">8000</span></span><br><span class="line"><span class="attr">token</span> = <span class="number">921110</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 管理后台配置 端口 用户 密码</span></span><br><span class="line"><span class="attr">dashboard_prot</span> = <span class="number">8080</span></span><br><span class="line"><span class="attr">dashboard_user</span> = sanmiao</span><br><span class="line"><span class="attr">dashboard_pwd</span> = <span class="number">921110</span></span><br><span class="line"></span><br><span class="line"><span class="attr">enable_prometheus</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># frp 日志</span></span><br><span class="line"><span class="attr">log_file</span> = /var/log/frps.log</span><br><span class="line"><span class="attr">log_level</span> = info</span><br><span class="line"><span class="attr">log_max_days</span> = <span class="number">3</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h2 id="远程链接"><a href="#远程链接" class="headerlink" title="远程链接"></a>远程链接</h2><p>通过 SSH 远程访问内网机器，比如我要通过公网访问到客户端的192.168.31.207（ssh-k8s-master）服务器上（需要访问客户端局域网哪个系统，就用配置的ip对应的端口即可）。通过下面命令在终端操作，输入密码需要用服务端的密码：</p>
+<h2 id="远程链接"><a href="#远程链接" class="headerlink" title="远程链接"></a>远程链接</h2><p>通过 SSH 远程访问内网机器，比如我要通过公网访问到客户端的192.168.31.207（ssh-k8s-master）服务器上（需要访问客户端局域网哪个系统，就用配置的ip对应的端口即可）。通过下面命令在终端操作，输入密码需要用客户端的密码：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@47.100.xx.xxx -p 6001</span><br></pre></td></tr></table></figure>
+
+<h2 id="启用WEB服务"><a href="#启用WEB服务" class="headerlink" title="启用WEB服务"></a>启用WEB服务</h2><p>服务端增加配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vhost_http_port=8090</span><br></pre></td></tr></table></figure>
+
+<p>客户端增加配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[web]</span><br><span class="line">type=http</span><br><span class="line">local_ip=127.0.0.1</span><br><span class="line">local_port=8090</span><br><span class="line">remote_port=8090</span><br><span class="line">custom_domains=x.xx.x.xxx # 公网IP或者域名</span><br></pre></td></tr></table></figure>
+
+
 
 <h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
 <li><p>公网服务器我用的阿里云的，需要设置端口白名单，否则链接不上。</p>
 </li>
 <li><p>服务端如果开启了防火墙，就需要设置防火墙开放端口。</p>
  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 添加监听端口</span><br><span class="line">sudo firewall-cmd --permanent --add-port=8000/tcp</span><br><span class="line"># 添加管理后台端口</span><br><span class="line">sudo firewall-cmd --permanent --add-port=8080/tcp</span><br><span class="line"># 重新加载配置</span><br><span class="line">sudo firewall-cmd --reload</span><br></pre></td></tr></table></figure></li>
+<li><p>使用systemd管理frp服务，示例为frps，frpc一样的操作。</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 复制配置到systemd配置文件夹中</span><br><span class="line">cp systemd/frps.service /usr/lib/systemd/system/</span><br><span class="line"># 启用frps</span><br><span class="line">systemctl enable frps</span><br><span class="line"># 启动frps</span><br><span class="line">systemctl start frps</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ol start="4">
+<li>login to server failed: dial tcp x.xx.x.xxx:8000: connect: connection ref，客户端出现这个错误，检查客户端和服务端的bind_port和server_port一致不。</li>
+<li>supervisord ERROR (spawn error)，出现这个错误，有一种可能是程序没执行起来，可以执行程序命令，看是否正常，确保没问题，在使用supervisord进行重启job。</li>
 </ol>
 
         </div>
