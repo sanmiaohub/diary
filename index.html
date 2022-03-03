@@ -84,6 +84,35 @@
     
         <article class="post-abstract">
             <div class="post-title">
+                <h2><a class="post-title-link" href="/diary/%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BA%E4%B8%80%E5%A5%97ci-cd%E6%B5%81%E7%A8%8B.html">从0到1搭建一套CI/CD流程</a></h2>
+            </div>
+            <div class="post-meta">
+                <span class="post-time">2022-03-02</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/diary/categories/%E5%BB%BA%E7%AB%99/">建站</a>
+                    
+                </span>
+                
+            </div>
+            <div class="post-content">
+                
+                    <p>以往的的构建部署流程为编写代码、上传代码库、编译压缩为制品、上传到服务器启动。这套流程不仅繁琐，且容易出错，是非常影响开发效率的。为了高效的构建和部署，我们就需要学习<strong>CI/CD</strong>了。</p>
+<p><code>CI</code> 的意思是 <code>持续构建</code> 。负责拉取代码库中的代码后，执行用户预置定义好的操作脚本，通过一系列编译操作构建出一个 <code>制品</code> ，并将制品推送至到制品库里面。常用工具有 Gitlab CI，Github CI，Jenkins 等。这个环节不参与部署，只负责构建代码，然后保存构建物。构建物被称为 制品，保存制品的地方被称为 <strong>制品库</strong>。</p>
+<p>CD 则有2层含义： <code>持续部署（Continuous Deployment）</code> 和 <code>持续交付（Continuous Delivery）</code> 。 <code>持续交付</code> 的概念是：将制品库的制品拿出后，部署在测试环境 / 交付给客户提前测试。 <code>持续部署</code> 则是将制品部署在生产环境。可以进行持续部署的工具也有很多： <code>Ansible</code> 批量部署， <code>Docker</code> 直接推拉镜像等等。当然也包括我们后面要写到的 <code>Kubernetes</code> 集群部署。</p>
+                    <div class="read-more">
+                        <a href="/diary/%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BA%E4%B8%80%E5%A5%97ci-cd%E6%B5%81%E7%A8%8B.html" class="read-more-link">
+                            阅读全文
+                            <i class="iconfont icon-readmore"></i>
+                        </a>
+                    </div>
+                
+            </div>
+        </article>
+    
+        <article class="post-abstract">
+            <div class="post-title">
                 <h2><a class="post-title-link" href="/diary/%E5%9F%BA%E4%BA%8Ehexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2.html">基于hexo搭建个人博客</a></h2>
             </div>
             <div class="post-meta">
@@ -212,7 +241,7 @@
             </div>
             <div class="post-content">
                 
-                    <p>scp   frp_0.33.0_linux_amd64.tar.gz    <a href="mailto:&#x72;&#x6f;&#x6f;&#116;&#64;&#49;&#x39;&#x32;&#46;&#49;&#54;&#56;&#46;&#x33;&#49;&#x2e;&#54;&#53;">&#x72;&#x6f;&#x6f;&#116;&#64;&#49;&#x39;&#x32;&#46;&#49;&#54;&#56;&#46;&#x33;&#49;&#x2e;&#54;&#53;</a>:~/</p>
+                    <p>scp   frp_0.33.0_linux_amd64.tar.gz    <a href="mailto:&#114;&#x6f;&#111;&#x74;&#64;&#x31;&#57;&#50;&#46;&#49;&#x36;&#x38;&#46;&#x33;&#49;&#46;&#x36;&#x35;">&#114;&#x6f;&#111;&#x74;&#64;&#x31;&#57;&#50;&#46;&#49;&#x36;&#x38;&#46;&#x33;&#49;&#46;&#x36;&#x35;</a>:~/</p>
                     <div class="read-more">
                         <a href="/diary/mac%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%88%B0linux.html" class="read-more-link">
                             阅读全文
@@ -323,33 +352,6 @@
                     <p>按以下步骤进行操作，操作环境Centos8.4，启动后，默认的端口号为8080，使用<a target="_blank" rel="noopener" href="http://ip:8080/">http://IP:8080</a> 即可访问进行初始化设置。</p>
                     <div class="read-more">
                         <a href="/diary/%E5%9C%A8Centos%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85Jenkins.html" class="read-more-link">
-                            阅读全文
-                            <i class="iconfont icon-readmore"></i>
-                        </a>
-                    </div>
-                
-            </div>
-        </article>
-    
-        <article class="post-abstract">
-            <div class="post-title">
-                <h2><a class="post-title-link" href="/diary/Linux%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98.html">Linux常见问题</a></h2>
-            </div>
-            <div class="post-meta">
-                <span class="post-time">2021-12-08</span>
-                
-                <span class="post-category">
-                    
-                    <a class="category" href="/diary/categories/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">常见问题</a>
-                    
-                </span>
-                
-            </div>
-            <div class="post-content">
-                
-                    <p>1.env 获取所有环境变量 值为key=value列表</p>
-                    <div class="read-more">
-                        <a href="/diary/Linux%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98.html" class="read-more-link">
                             阅读全文
                             <i class="iconfont icon-readmore"></i>
                         </a>
