@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>三喵notes</title>
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <div class="header-title">
+
+        </div>
+        <nav class="header-nav">
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+
+            
+            <a href="/archives" class="header-nav-link">
+                归档
+            </a>
+            
+
+            
+            <a href="/tags" class="header-nav-link">
+                标签
+            </a>
+            
+
+            
+            <a href="/about/" class="header-nav-link">
+                关于
+            </a>
+            
+        </nav>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">三喵's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+            <h2 class="title">certbot创建ssl证书</h2>
+            <div class="post-meta">
+                <span class="post-time">2022-03-14</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/%E5%BB%BA%E7%AB%99/">建站</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <p>如果您使用OS包管理器安装了任何Certbot包，您应该在安装Certbot snap之前删除它们，以确保在运行Certbot命令时，使用的是snap，而不是从OS包管理器安装。</p>
+<p>具体的命令取决于你的操作系统，但常见的例子是yum remove certbot。如果您以前通过Certbot -auto脚本使用过Certbot，您也应该按照这里的说明删除它的安装。</p>
+<span id="more"></span>
+
+<p>1.EPEL存储库添加到CentOS 7系统：</p>
+<p>yum install epel-release</p>
+<p>2.安装snapd软件包</p>
+<p>yum install snapd</p>
+<p>3.安装后，需要启用用于管理主快照通信套接字的systemd单元：</p>
+<p>systemctl enable –now snapd.socket</p>
+<p>4.在/var/lib/snapd/snap和之间创建符号链接/snap</p>
+<p>ln -s /var/lib/snapd/snap /snap</p>
+<p>5 确保snap版本是最新的</p>
+<p>sudo snap install core; sudo snap refresh core</p>
+<p>6.安装Certbot</p>
+<p>snap install –classic certbot</p>
+<p>7 准备Certbot命令，在计算机的命令行上执行以下指令，以确保可以运行certbot命令</p>
+<p>ln -s /snap/bin/certbot /usr/bin/certbot</p>
+<p>8 运行这个命令来获得一个证书，并让Certbot自动编辑你的nginx配置来提供它，这一步就打开了HTTPS访问。</p>
+<p>certbot –nginx</p>
+<p>9 如果你觉得比较保守，想手动修改你的nginx配置，只创建证书，运行这个命令。</p>
+<p>certbot certonly –nginx</p>
+<p>错误处理</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Client with the currently selected authenticator does not support any combination of challenges that will satisfy the CA. You may need to use an authenticator plugin that can do challenges over DNS.</span><br><span class="line"></span><br><span class="line">添加 --preferred-challenges dns --manual</span><br><span class="line">certbot certonly  -d *.sanxxx.cn -d sanxxx.cn --email xxx2155@qq.com --preferred-challenges dns --manual</span><br><span class="line"></span><br><span class="line">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span><br><span class="line">Please deploy a DNS TXT record under the name:</span><br><span class="line"></span><br><span class="line">_acme-challenge.sanxxx.cn.</span><br><span class="line"></span><br><span class="line">with the following value:</span><br><span class="line"></span><br><span class="line">UVkFzkYZVt63kRm_QATpDLLi8dBT6Gxxx</span><br><span class="line"></span><br><span class="line">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span><br><span class="line"></span><br><span class="line">去域名解析添加TXT解析_acme-challenge.sanxxx.cn 值为UVkFzkYZVt63kRm_QATpDLLi8dBT6Gxxx</span><br><span class="line"></span><br><span class="line">Successfully received certificate.</span><br><span class="line">Certificate is saved at: /etc/letsencrypt/live/sanxxx.cn/fullchain.pem</span><br><span class="line">Key is saved at:         /etc/letsencrypt/live/sanxxx.cn/privkey.pem</span><br><span class="line">This certificate expires on 2022-06-12.</span><br><span class="line">These files will be updated when the certificate renews.</span><br><span class="line"></span><br><span class="line">NEXT STEPS:</span><br><span class="line">- This certificate will not be renewed automatically. Autorenewal of --manual certificates requires the use of an authentication hook script (--manual-auth-hook) but one was not provided. To renew this certificate, repeat this same certbot command before the certificate&#x27;s expiry date.</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        
+        <div class="post-tag">
+            
+            <a class="tag" href="/tags/ssl/" title="ssl">ssl</a>
+            
+            <a class="tag" href="/tags/certbot/" title="certbot">certbot</a>
+            
+            <a class="tag" href="/tags/nginx/" title="nginx">nginx</a>
+            
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+        
+            <a class="next" href="/%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BA%E4%B8%80%E5%A5%97ci-cd%E6%B5%81%E7%A8%8B.html">
+                <span class="nav-default">从0到1搭建一套CI/CD流程</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container"></div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+                2021 -
+            
+            2022
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/sanmiaohub">三喵</a>
+        </p>
+    </div>
+</footer>
+</body>
+
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+
+<script src="/js/index.js"></script>
+
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+    
+    var gitalk = new Gitalk({
+        clientID: 'ac5bcf4f0c99189ff836',
+        clientSecret: '35001628275065c8216c7dac9cdff00ddcda1c88',
+        repo: 'diary',
+        owner: 'sanmiaohub',
+        admin: ['sanmiaohub'],
+        id: decodeURI(location.pathname),
+        distractionFreeMode: false
+    });
+
+    gitalk.render('comment-container');
+    
+
+</script>
+</html>
