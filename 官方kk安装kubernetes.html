@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>三喵notes</title>
+    
+    
+<link rel="stylesheet" href="/diary/css/style.css">
+
+    
+<link rel="stylesheet" href="/diary/css/gitment.css">
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <div class="header-title">
+
+        </div>
+        <nav class="header-nav">
+            
+            <a href="/diary/" class="header-nav-link" >
+                首页
+            </a>
+            
+
+            
+            <a href="/diary/archives" class="header-nav-link">
+                归档
+            </a>
+            
+
+            
+            <a href="/diary/tags" class="header-nav-link">
+                标签
+            </a>
+            
+
+            
+            <a href="/diary/about/" class="header-nav-link">
+                关于
+            </a>
+            
+        </nav>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/diary/" class="mobile-nav-title-link">三喵's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/diary/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/diary/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/diary/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/diary/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+            <h2 class="title">官方kk安装kubernetes</h2>
+            <div class="post-meta">
+                <span class="post-time">2022-03-23</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/diary/categories/%E5%BB%BA%E7%AB%99/">建站</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85"><span class="toc-text">基本安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E8%8A%82%E7%82%B9%E5%AE%89%E8%A3%85"><span class="toc-text">主节点安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E6%9C%BA%E5%AE%89%E8%A3%85"><span class="toc-text">构建机安装</span></a></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <p>本次教程记录使用的服务器为购买的二手Dell R720服务器，按照以下表格创建五个虚拟机，每个虚拟机安装的系统都为<strong>Centos7</strong>，<a href="https://link.juejin.cn/?target=https://mirrors.aliyun.com/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-Minimal-2009.iso">下载地址</a>。大家如果使用云服务器，按照同样的配置购买即可。</p>
+<span id="more"></span>
+
+<table>
+<thead>
+<tr>
+<th>服务器</th>
+<th>配置</th>
+<th>硬盘</th>
+<th>主机名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>内网穿透 - frp</td>
+<td>4核8G</td>
+<td>20GB</td>
+<td>frp-proxy</td>
+</tr>
+<tr>
+<td>主节点 - master</td>
+<td>4核8G</td>
+<td>50GB</td>
+<td>k8s-master</td>
+</tr>
+<tr>
+<td>子节点 - node - 1</td>
+<td>8核16G</td>
+<td>80GB</td>
+<td>k8s-node-1</td>
+</tr>
+<tr>
+<td>子节点 - node - 2</td>
+<td>8核16G</td>
+<td>80GB</td>
+<td>k8s-node-2</td>
+</tr>
+<tr>
+<td>构建机 - 日志挂载 kibana harbor</td>
+<td>8核16G</td>
+<td>250GB</td>
+<td>k8s-builder</td>
+</tr>
+</tbody></table>
+<h2 id="基本安装"><a href="#基本安装" class="headerlink" title="基本安装"></a>基本安装</h2><p>每台机器都要执行的命令，保证基础环境统一。</p>
+<ul>
+<li>安装基础工具</li>
+<li>统一时区</li>
+<li>关闭防火墙</li>
+<li>关闭系统交换区</li>
+<li>关闭SELinux（强制访问控制系统）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># 安装基础工具</span><br><span class="line">yum install vim wget ntpdate yum-utils -y</span><br><span class="line"></span><br><span class="line"># 时区处理</span><br><span class="line">ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &amp;&amp; bash -c &quot;echo &#x27;Asia/Shanghai&#x27; &gt; /etc/timezone&quot;</span><br><span class="line"></span><br><span class="line"># 防火墙处理</span><br><span class="line">systemctl stop firewalld &amp; systemctl disable firewalld</span><br><span class="line"></span><br><span class="line"># 交换区处理，注释那一行</span><br><span class="line">vi /etc/fstab</span><br><span class="line">/dev/mapper/centos-swap swap ...</span><br><span class="line"></span><br><span class="line"># 关闭SELinux，改配置的值</span><br><span class="line">vi /etc/sysconfig/selinux</span><br><span class="line">SELINUX=disabled</span><br><span class="line"></span><br><span class="line"># nginx安装</span><br><span class="line">http://nginx.org/en/linux_packages.html#RHEL-CentOS</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="主节点安装"><a href="#主节点安装" class="headerlink" title="主节点安装"></a>主节点安装</h2><p>在主节点执行以下命令，会同时对子节点做安装处理，使用官方的kk来做安装。</p>
+<ul>
+<li>下载kk工具</li>
+<li>为kk添加执行权限</li>
+<li>创建配置文件</li>
+<li>修改配置文件</li>
+<li>创建依赖软件</li>
+<li>执行安装</li>
+<li>安装成功</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># 下载KubeKey </span><br><span class="line">curl -sfL https://get-kk.kubesphere.io | VERSION=v1.2.1 sh -</span><br><span class="line"></span><br><span class="line"># 为 kk 添加可执行权限</span><br><span class="line">chmod +x kk</span><br><span class="line"></span><br><span class="line"># 创建配置文件</span><br><span class="line">./kk create config --with-kubesphere v3.2.1</span><br><span class="line"></span><br><span class="line"># 缺少必要软件</span><br><span class="line">yum install conntrack-tools</span><br><span class="line"> </span><br><span class="line"># 执行安装</span><br><span class="line">./kk create cluster -f config-sample.yaml</span><br><span class="line"></span><br><span class="line"># 安装成功</span><br><span class="line">#####################################################</span><br><span class="line">###              Welcome to KubeSphere!           ###</span><br><span class="line">#####################################################</span><br><span class="line"></span><br><span class="line">Console: http://192.168.31.163:30880</span><br><span class="line">Account: admin</span><br><span class="line">Password: P@88w0rd</span><br><span class="line"></span><br><span class="line"># 官方教程地址</span><br><span class="line">https://kubesphere.io/zh/docs/installing-on-linux/introduction/multioverview/</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="构建机安装"><a href="#构建机安装" class="headerlink" title="构建机安装"></a>构建机安装</h2><ul>
+<li>安装docker</li>
+<li>安装harbor</li>
+<li>安装jenkins</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">安装docker</span><br><span class="line"></span><br><span class="line"># 安装yum扩展包，安装后可以使用yum-config-manager来方便的添加源</span><br><span class="line">yum install yum-utils epel-release</span><br><span class="line"></span><br><span class="line"># 增加镜像源</span><br><span class="line">yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line"></span><br><span class="line"># 安装docker</span><br><span class="line">yum install docker-ce</span><br><span class="line"></span><br><span class="line"># 查看安装版本</span><br><span class="line">docker -v</span><br><span class="line">Docker version 20.10.12, build e91ed57</span><br><span class="line"></span><br><span class="line"># 启动docker</span><br><span class="line">systemctl enable docker</span><br><span class="line">systemctl start docker</span><br><span class="line"></span><br><span class="line"># 更换docker源</span><br><span class="line">sudo tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://llu06o1m.mirror.aliyuncs.com&quot;]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line"># 重启docker生效</span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br><span class="line"></span><br><span class="line"># 安装命令</span><br><span class="line">yum install docker-compose</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">安装harbor</span><br><span class="line"></span><br><span class="line"># 下载地址</span><br><span class="line">https://github.com/goharbor/harbor/releases</span><br><span class="line"></span><br><span class="line"># 本次下载地址</span><br><span class="line">wget https://github.com/goharbor/harbor/releases/download/v2.4.2/harbor-online-installer-v2.4.2.tgz</span><br><span class="line"></span><br><span class="line"># 解压文件</span><br><span class="line">tar -xzvf harbor-online-installer-v2.4.2.tgz</span><br><span class="line"></span><br><span class="line"># 进入文件把模板改为配置文件</span><br><span class="line">cd harbor &amp;&amp; mv harbor.yml.tmpl harbor.yml</span><br><span class="line"></span><br><span class="line"># 修改配置文件（添加hostname、添加端口号、添加管理后台密码、注释https）</span><br><span class="line">hostname: 192.168.31.65</span><br><span class="line">http:</span><br><span class="line">  port: 8082</span><br><span class="line">harbor_admin_password: 921110</span><br><span class="line">database:</span><br><span class="line">  password: 921110</span><br><span class="line"># https:</span><br><span class="line">  # port: 443</span><br><span class="line">  # certificate: /your/certificate/path</span><br><span class="line">  # private_key: /your/private/key/path</span><br><span class="line"></span><br><span class="line"># 安装程序</span><br><span class="line">sh ./install.sh</span><br><span class="line"></span><br><span class="line"># 查看镜像</span><br><span class="line">goharbor/redis-photon         v2.4.2    61d136910774   9 days ago    158MB</span><br><span class="line">goharbor/harbor-registryctl   v2.4.2    f43545bdfd12   9 days ago    138MB</span><br><span class="line">goharbor/registry-photon      v2.4.2    1927be8b8775   9 days ago    80.8MB</span><br><span class="line">goharbor/nginx-photon         v2.4.2    4189bfe82749   9 days ago    47.3MB</span><br><span class="line">goharbor/harbor-log           v2.4.2    b2279d3a2ba5   9 days ago    162MB</span><br><span class="line">goharbor/harbor-jobservice    v2.4.2    d22f0a749835   9 days ago    222MB</span><br><span class="line">goharbor/harbor-core          v2.4.2    672a56385d29   9 days ago    199MB</span><br><span class="line">goharbor/harbor-portal        v2.4.2    bc60d9eaf4ad   9 days ago    56.3MB</span><br><span class="line">goharbor/harbor-db            v2.4.2    91d13ec46b2c   10 days ago   226MB</span><br><span class="line">goharbor/prepare              v2.4.2    d2100ed70ba4   10 days ago   269MB</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">安装jenkins</span><br><span class="line"></span><br><span class="line"># 下载源文件</span><br><span class="line">sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo</span><br><span class="line"></span><br><span class="line"># 导入软件源</span><br><span class="line">sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key</span><br><span class="line"></span><br><span class="line"># 安装软件</span><br><span class="line">yum install git java jenkins</span><br><span class="line"></span><br><span class="line"># 将当前用户添加至docker用户组</span><br><span class="line">gpasswd -a jenkins docker</span><br><span class="line"></span><br><span class="line"># 更新docker用户组</span><br><span class="line">newgrp docker</span><br><span class="line"></span><br><span class="line"># jenkins加入system管理器</span><br><span class="line">systemctl enable jenkins</span><br><span class="line"></span><br><span class="line"># 修改配置文件端口号</span><br><span class="line">vim /etc/sysconfig/jenkins</span><br><span class="line"># 如果无效，修改下面文件的里面的Environment</span><br><span class="line">systemctl stop jenkins</span><br><span class="line">vim /usr/lib/systemd/system/jenkins.service</span><br><span class="line">systemctl daemon-reload &amp;&amp; systemctl start jenkins</span><br><span class="line"></span><br><span class="line"># 启动jenkins</span><br><span class="line">systemctl start jenkins</span><br><span class="line"></span><br><span class="line"># 查看jenkins默认密码</span><br><span class="line">cat /var/lib/jenkins/secrets/initialAdminPassword</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        
+        <div class="post-tag">
+            
+            <a class="tag" href="/diary/tags/docker/" title="docker">docker</a>
+            
+            <a class="tag" href="/diary/tags/jenkins/" title="jenkins">jenkins</a>
+            
+            <a class="tag" href="/diary/tags/linux/" title="linux">linux</a>
+            
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+        
+            <a class="next" href="/diary/kubernetes%E5%AE%89%E8%A3%85argocd.html">
+                <span class="nav-default">kubernetes安装argocd</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container"></div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+                2021 -
+            
+            2022
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/sanmiaohub">三喵</a>
+        </p>
+    </div>
+</footer>
+</body>
+
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+
+<script src="/diary/js/index.js"></script>
+
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+    
+    var gitalk = new Gitalk({
+        clientID: 'ac5bcf4f0c99189ff836',
+        clientSecret: '35001628275065c8216c7dac9cdff00ddcda1c88',
+        repo: 'diary',
+        owner: 'sanmiaohub',
+        admin: ['sanmiaohub'],
+        id: decodeURI(location.pathname),
+        distractionFreeMode: false
+    });
+
+    gitalk.render('comment-container');
+    
+
+</script>
+</html>

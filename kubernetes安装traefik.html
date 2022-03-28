@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>三喵notes</title>
+    
+    
+<link rel="stylesheet" href="/diary/css/style.css">
+
+    
+<link rel="stylesheet" href="/diary/css/gitment.css">
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <div class="header-title">
+
+        </div>
+        <nav class="header-nav">
+            
+            <a href="/diary/" class="header-nav-link" >
+                首页
+            </a>
+            
+
+            
+            <a href="/diary/archives" class="header-nav-link">
+                归档
+            </a>
+            
+
+            
+            <a href="/diary/tags" class="header-nav-link">
+                标签
+            </a>
+            
+
+            
+            <a href="/diary/about/" class="header-nav-link">
+                关于
+            </a>
+            
+        </nav>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/diary/" class="mobile-nav-title-link">三喵's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/diary/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/diary/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/diary/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/diary/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+            <h2 class="title">kubernetes安装traefik</h2>
+            <div class="post-meta">
+                <span class="post-time">2022-03-17</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/diary/categories/k8s/">k8s</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <p>traefik与nginx一样，是一款优秀的反向代理工具，或者叫Edge Router。</p>
+<span id="more"></span>
+
+<p>先创建命名空间</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl create namespace traefik</span><br></pre></td></tr></table></figure>
+
+<p>添加配置文件 ~/ingress/config.yaml，如果日志不存储在本地，自己修改storageClassName</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">ports:</span><br><span class="line">  traefik:</span><br><span class="line">    expose: true</span><br><span class="line">  web:</span><br><span class="line">    nodePort: 80</span><br><span class="line">  websecure:</span><br><span class="line">    nodePort: 443</span><br><span class="line">persistence:</span><br><span class="line">  enabled: true</span><br><span class="line">  name: data</span><br><span class="line">  accessMode: ReadWriteOnce</span><br><span class="line">  size: 5G</span><br><span class="line">  storageClassName: &quot;local&quot;</span><br><span class="line">  path: /data</span><br><span class="line">logs:</span><br><span class="line">  general:</span><br><span class="line">    level: ERROR</span><br><span class="line">  access:</span><br><span class="line">    enabled: true</span><br><span class="line">    format: json</span><br><span class="line">    bufferingSize: 100</span><br><span class="line">    filters:</span><br><span class="line">      statuscodes: &quot;200,300-302&quot;</span><br><span class="line">      retryattempts: true</span><br><span class="line">      minduration: 10ms</span><br><span class="line">    fields:</span><br><span class="line">      general:</span><br><span class="line">        defaultmode: keep</span><br><span class="line">        names:</span><br><span class="line">          ClientUsername: drop</span><br><span class="line">      headers:</span><br><span class="line">        defaultmode: drop</span><br><span class="line">        names:</span><br><span class="line">          User-Agent: redact</span><br><span class="line">          Authorization: drop</span><br><span class="line">          Content-Type: keep</span><br><span class="line">additionalAguments:</span><br><span class="line">  - &quot;--servicesTransport.insecureSkipVerify=true&quot;</span><br><span class="line">  - &quot;--api.insecure=true&quot;</span><br><span class="line">  - &quot;--api.dashboard=true&quot;</span><br></pre></td></tr></table></figure>
+
+<p>安装源并更新和安装traefik</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">helm repo add traefik https://helm.traefik.io/traefik</span><br><span class="line"></span><br><span class="line">helm repo update</span><br><span class="line"></span><br><span class="line">helm install --namespace=traefik traefik traefik/traefik -f config.yaml</span><br></pre></td></tr></table></figure>
+
+<p>配置面板 ~/ingress/dashboard.yaml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: traefik.containo.us/v1alpha1</span><br><span class="line">kind: IngressRoute</span><br><span class="line">metadata:</span><br><span class="line">  name: dashboard</span><br><span class="line">  namespace: traefik</span><br><span class="line">spec:</span><br><span class="line">  entryPoints:</span><br><span class="line">    - web</span><br><span class="line">  routes:</span><br><span class="line">    - match: Host(`you host`) &amp;&amp; (PathPrefix(`/dashboard`) || PathPrefix(`/api`))</span><br><span class="line">      kind: Rule</span><br><span class="line">      services:</span><br><span class="line">        - name: api@internal</span><br><span class="line">          kind: TraefikService</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl create -f dashboard.yaml</span><br></pre></td></tr></table></figure>
+
+<p>查看服务</p>
+<p>service/traefik服务中，9000:31486/TCP是用于访问traefik后台的端口号，请求转发到31486即可。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">NAME                           READY   STATUS    RESTARTS   AGE</span><br><span class="line">pod/traefik-548bf74775-wlnj2   1/1     Running   2          2d4h</span><br><span class="line"></span><br><span class="line">NAME              TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)                                     AGE</span><br><span class="line">service/traefik   NodePort   10.233.6.71   &lt;none&gt;        9000:31486/TCP,80:32529/TCP,443:30052/TCP   2d4h</span><br><span class="line"></span><br><span class="line">NAME                      READY   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">deployment.apps/traefik   1/1     1            1           2d4h</span><br><span class="line"></span><br><span class="line">NAME                                 DESIRED   CURRENT   READY   AGE</span><br><span class="line">replicaset.apps/traefik-548bf74775   1         1         1       2d4h</span><br></pre></td></tr></table></figure>
+
+
+
+<p>转载</p>
+<p><a target="_blank" rel="noopener" href="https://www.coolops.cn/archives/yi-wen-dai-ni-gao-dong-traefik#%E9%83%A8%E7%BD%B2traefik">https://www.coolops.cn/archives/yi-wen-dai-ni-gao-dong-traefik#%E9%83%A8%E7%BD%B2traefik</a></p>
+
+        </div>
+        
+        <div class="post-tag">
+            
+            <a class="tag" href="/diary/tags/kubernetes/" title="kubernetes">kubernetes</a>
+            
+            <a class="tag" href="/diary/tags/traefik/" title="traefik">traefik</a>
+            
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+            <a class="prev" href="/diary/kubernetes%E5%AE%89%E8%A3%85argocd.html">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">kubernetes安装argocd</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/diary/certbot%E5%88%9B%E5%BB%BAssl%E8%AF%81%E4%B9%A6.html">
+                <span class="nav-default">certbot创建ssl证书</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container"></div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+                2021 -
+            
+            2022
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/sanmiaohub">三喵</a>
+        </p>
+    </div>
+</footer>
+</body>
+
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+
+<script src="/diary/js/index.js"></script>
+
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+    
+    var gitalk = new Gitalk({
+        clientID: 'ac5bcf4f0c99189ff836',
+        clientSecret: '35001628275065c8216c7dac9cdff00ddcda1c88',
+        repo: 'diary',
+        owner: 'sanmiaohub',
+        admin: ['sanmiaohub'],
+        id: decodeURI(location.pathname),
+        distractionFreeMode: false
+    });
+
+    gitalk.render('comment-container');
+    
+
+</script>
+</html>
