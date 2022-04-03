@@ -111,8 +111,8 @@
 <p>服务部署</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kubectl create namespace argocd</span><br><span class="line">kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml</span><br></pre></td></tr></table></figure>
 
-<p>通过argocd管理UI进行发布服务，就可以通过<a href="http://127.0.0.1:1800进行访问argocd-ui">http://127.0.0.1:1800进行访问argocd-ui</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl -n argocd expose deployments/argocd-server --type=&quot;NodePort&quot; --port=8080 --name=argocd-server-nodeport</span><br></pre></td></tr></table></figure>
+<p>暴露argocd ui端口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">kubectl patch service -n argocd argocd-server -p &#x27;&#123;&quot;spec&quot;: &#123;&quot;type&quot;: &quot;NodePort&quot;&#125;&#125;&#x27;</span><br><span class="line"></span><br><span class="line"># kubectl get svc -n argocd </span><br><span class="line">argocd-server     NodePort    10.233.11.142   &lt;none&gt;      80:30260/TCP,443:31541/TCP   4m54s</span><br></pre></td></tr></table></figure>
 
 <p>查看登录口令</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath=&quot;&#123;.data.password&#125;&quot; | base64 -d|xargs -n1 echo</span><br><span class="line"></span><br><span class="line">admin</span><br><span class="line">0E9pLbMxhS8T-mie</span><br></pre></td></tr></table></figure>
@@ -120,6 +120,27 @@
 <p>argocdCLI安装</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/argoproj/argo-cd/releases/download/v2.1.2/argocd-linux-amd64</span><br><span class="line">cp argocd-linux-amd64 /usr/local/bin/argocd </span><br><span class="line">chmod +x /usr/local/bin/argocd</span><br></pre></td></tr></table></figure>
 
+
+
+<p>关于argocd自动跳转https服务如何关闭</p>
+<p>安装argocd使用的是<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml%E8%BF%99%E4%B8%AA%E9%93%BE%E6%8E%A5%EF%BC%8C%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E4%B8%8B%E8%BD%BD%E4%B8%8B%E6%9D%A5%E3%80%82">https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml这个链接，我们可以下载下来。</a></p>
+<p>然后修改里面的配置。修改的地方为 Kind:Deployment 的command处添加 - –insecure</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">containers:</span><br><span class="line">  - command:</span><br><span class="line">    - argocd-server</span><br><span class="line">    - --insecure</span><br></pre></td></tr></table></figure>
+
+<p>添加完成后，重新应用文件，kubectl apply -f install.yaml -n argocd</p>
+<p>可以查看下配置 kubectl describe deployment argocd-serve -n argocd</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Name:                   argocd-server</span><br><span class="line">Namespace:              argocd</span><br><span class="line">Replicas:               1 desired | 1 updated | 2 total | 1 available | 1 unavailable</span><br><span class="line">StrategyType:           RollingUpdate</span><br><span class="line">MinReadySeconds:        0</span><br><span class="line">RollingUpdateStrategy:  25% max unavailable, 25% max surge</span><br><span class="line">Pod Template:</span><br><span class="line">  Labels:           app.kubernetes.io/name=argocd-server</span><br><span class="line">  Service Account:  argocd-server</span><br><span class="line">  Containers:</span><br><span class="line">   argocd-server:</span><br><span class="line">    Image:       quay.io/argoproj/argocd:v2.3.1</span><br><span class="line">    Ports:       8080/TCP, 8083/TCP</span><br><span class="line">    Host Ports:  0/TCP, 0/TCP</span><br><span class="line">    Command:</span><br><span class="line">      argocd-server</span><br><span class="line">      --insecure</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>官方说明 <a target="_blank" rel="noopener" href="https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/">https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/</a></p>
+<p>The API server should then be run with TLS disabled. Edit the <code>argocd-server</code> deployment to add the <code>--insecure</code> flag to the argocd-server command:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">spec:</span><br><span class="line">  template:</span><br><span class="line">    spec:</span><br><span class="line">      containers:</span><br><span class="line">      - name: argocd-server</span><br><span class="line">        command:</span><br><span class="line">        - /argocd-server</span><br><span class="line">        - --repo-server</span><br><span class="line">        - argocd-repo-server:8081</span><br><span class="line">        - --insecure</span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.kancloud.cn/willseecloud/jenkins/2424118">https://www.kancloud.cn/willseecloud/jenkins/2424118</a></p>
 
         </div>
         
